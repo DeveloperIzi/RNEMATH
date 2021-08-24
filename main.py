@@ -25,6 +25,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # 모듈 참조
 import test1
+import bigkindsmodule
+import pyrint
 
 # 변수 선언
 
@@ -35,5 +37,7 @@ def print_hi(name):
 
 # 메인 함수
 if __name__ == '__main__':
-    print_hi('PyCharm')
-    print(test1.sub(5, 3))
+    # print_hi('PyCharm')
+    # print(test1.sub(5, 3))
+    bigkindsmodule.big_kinds_crawling(mode='', page='')
+
