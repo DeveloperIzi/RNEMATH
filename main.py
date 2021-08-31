@@ -31,6 +31,7 @@ import pyrint
 # 변수 선언
 
 
+
 def print_hi(name):
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
@@ -39,5 +40,6 @@ def print_hi(name):
 if __name__ == '__main__':
     # print_hi('PyCharm')
     # print(test1.sub(5, 3))
-    bigkindsmodule.big_kinds_crawling(mode='', page='')
+    # bigkindsmodule.big_kinds_crawling(mode='', page='')
+    bigkindsmodule.big_kinds_samsung(mode='', page='')
 
