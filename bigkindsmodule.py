@@ -78,19 +78,23 @@ def big_kinds_samsung(mode, page):
     while i < 1000:
         j = 0
         while j < 10:
-            driver.implicitly_wait(time_to_wait=1)
-            driver.find_elements_by_xpath("//span[@class='title-elipsis']")[j].click()
+            try:
+                driver.implicitly_wait(time_to_wait=1)
+                driver.find_elements_by_xpath("//span[@class='title-elipsis']")[j].click()
 
-            # time.sleep(0.1)
-            WebDriverWait(driver, timeout=5).until(
-                EC.presence_of_element_located((By.XPATH, '//*[@id="news-detail-modal"]/div/div/div[1]')))
+                # time.sleep(0.1)
+                WebDriverWait(driver, timeout=5).until(
+                    EC.presence_of_element_located((By.XPATH, '//*[@id="news-detail-modal"]/div/div/div[1]')))
 
-            html = driver.page_source  # 페이지 긁어오기
+                html = driver.page_source  # 페이지 긁어오기
 
-            soup = BeautifulSoup(html, 'html.parser')
-            temp_text_head = str(soup.select('.news-view-head')[0].get_text()).split("기사원문")[0].replace("\n\n", "")
-            temp_text_body = str(soup.select('.news-view-body')[0].get_text()).split("					")[1].replace(
-                "\n", "")
+                soup = BeautifulSoup(html, 'html.parser')
+                temp_text_head = str(soup.select('.news-view-head')[0].get_text()).split("기사원문")[0].replace("\n\n", "")
+                temp_text_body = str(soup.select('.news-view-body')[0].get_text()).split("					")[
+                    1].replace(
+                    "\n", "")
+            finally:
+                print_big("오류 발생... 오류 무시 및 진행")
 
             f = open("txt/" + str(i) + "-" + str(j) + ".txt", 'w', encoding='utf-8')
             f.write(temp_text_head)
@@ -102,9 +106,8 @@ def big_kinds_samsung(mode, page):
             print(temp_text_body)
             print("-----------------------------------------")
 
-            close_button = driver.find_elements_by_xpath('//*[@id="news-detail-modal"]/div/div/button')[0]
-
             try:
+                close_button = driver.find_elements_by_xpath('//*[@id="news-detail-modal"]/div/div/button')[0]
                 close_button.click()
             finally:
                 j += 1
